@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { Calendar, Users, Mail, Phone, MessageSquare } from 'lucide-react';
-import { supabase } from '../lib/supabase';
+import { supabase, isSupabaseConfigured } from '../lib/supabase';
 import { TourInquiry } from '../types';
 
 export default function Book() {
@@ -38,6 +38,13 @@ export default function Book() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    
+    if (!isSupabaseConfigured) {
+      setSubmitStatus('error');
+      setErrorMessage('Form submission is not configured. Please contact the site administrator.');
+      return;
+    }
+
     setIsSubmitting(true);
     setSubmitStatus('idle');
     setErrorMessage('');
