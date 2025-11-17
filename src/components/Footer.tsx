@@ -8,9 +8,11 @@ export default function Footer() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
           <div>
-            <h3 className="font-serif font-bold text-lg text-stone-900 mb-4">
-              Sandbridge Farmhouse
-            </h3>
+            <img
+              src="/logo.png"
+              alt="Sandbridge Farmhouse"
+              className="h-16 w-auto object-contain mb-4"
+            />
             <p className="text-sm text-stone-600">
               Elegant coastal farmhouse venue for your most memorable events.
             </p>
