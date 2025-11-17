@@ -137,29 +137,23 @@ export default function Home() {
 
       <section className="py-20 px-4 sm:px-6 lg:px-8 bg-white">
         <div className="max-w-7xl mx-auto text-center">
-          <span className="text-sage-500 text-sm font-medium tracking-wide uppercase">
-            Featured Testimonial
-          </span>
-          <h2 className="font-serif text-4xl md:text-5xl font-bold text-stone-900 mt-2 mb-12">
-            Guests Love Us
+          <h2 className="font-serif text-4xl md:text-5xl font-bold text-stone-900 mb-6">
+            Ready to Create Your Perfect Event?
           </h2>
+          <p className="text-lg text-stone-600 mb-12 max-w-2xl mx-auto">
+            Schedule a tour to experience Sandbridge Farmhouse in person and discuss how we can bring your vision to life.
+          </p>
 
-          <div className="bg-gradient-to-br from-sand-50 to-white border border-sand-200 rounded-lg p-12 max-w-2xl mx-auto">
-            <p className="text-xl text-stone-700 italic mb-6 leading-relaxed">
-              "Sandbridge Farmhouse exceeded every expectation. The natural beauty meant we needed minimal decoration. Our guests are still talking about how perfect the day was."
-            </p>
-            <div className="flex items-center justify-center gap-4">
-              <div className="text-left">
-                <p className="font-semibold text-stone-900">Sarah & Michael</p>
-                <p className="text-sm text-stone-600">Wedding Celebration</p>
-              </div>
-            </div>
-          </div>
-
-          <div className="mt-12">
+          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <Link
+              to="/book"
+              className="inline-flex items-center justify-center gap-2 bg-sage-500 hover:bg-sage-600 text-white font-semibold py-3 px-8 rounded-lg transition-all transform hover:scale-105"
+            >
+              Book a Tour <ArrowRight size={20} />
+            </Link>
             <Link
               to="/contact"
-              className="inline-flex items-center justify-center gap-2 bg-sage-500 hover:bg-sage-600 text-white font-semibold py-3 px-8 rounded-lg transition-all transform hover:scale-105"
+              className="inline-flex items-center justify-center gap-2 bg-white hover:bg-sand-50 text-sage-500 font-semibold py-3 px-8 rounded-lg border-2 border-sage-500 transition-all"
             >
               Get in Touch <ArrowRight size={20} />
             </Link>
