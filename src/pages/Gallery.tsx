@@ -84,36 +84,30 @@ export default function Gallery() {
 
       <div className="py-12 px-4 sm:px-6 lg:px-8 bg-white">
         <div className="max-w-7xl mx-auto">
-          {images.length === 0 ? (
-            <div className="text-center py-12">
-              <p className="text-stone-600 text-lg">No images in gallery yet. Upload some images to get started!</p>
-            </div>
-          ) : (
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-              {filteredImages.map((image, index) => (
-                <button
-                  key={image.id}
-                  onClick={() => openImage(image, index)}
-                  className="group relative overflow-hidden rounded-lg aspect-video cursor-pointer focus:outline-none focus:ring-2 focus:ring-sage-500 focus:ring-offset-2"
-                >
-                  <img
-                    src={image.public_url}
-                    alt={image.title}
-                    loading="lazy"
-                    className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-stone-900/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-4">
-                    <div>
-                      <h3 className="font-semibold text-white text-lg">{image.title}</h3>
-                      {image.description && (
-                        <p className="text-sand-200 text-sm">{image.description}</p>
-                      )}
-                    </div>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            {filteredImages.map((image, index) => (
+              <button
+                key={image.id}
+                onClick={() => openImage(image, index)}
+                className="group relative overflow-hidden rounded-lg aspect-video cursor-pointer focus:outline-none focus:ring-2 focus:ring-sage-500 focus:ring-offset-2"
+              >
+                <img
+                  src={image.public_url}
+                  alt={image.title}
+                  loading="lazy"
+                  className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-stone-900/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-4">
+                  <div>
+                    <h3 className="font-semibold text-white text-lg">{image.title}</h3>
+                    {image.description && (
+                      <p className="text-sand-200 text-sm">{image.description}</p>
+                    )}
                   </div>
-                </button>
-              ))}
-            </div>
-          )}
+                </div>
+              </button>
+            ))}
+          </div>
         </div>
       </div>
 
