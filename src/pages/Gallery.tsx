@@ -77,7 +77,7 @@ export default function Gallery() {
             Venue Gallery
           </h1>
           <p className="text-lg text-stone-600 mt-4 max-w-2xl mx-auto">
-            Discover the beauty and elegance of Sandbridge Farmhouse through our curated collection of venue spaces and events
+            Work in progress - More photos coming soon! Discover the beauty and elegance of Sandbridge Farmhouse.
           </p>
         </div>
       </div>
