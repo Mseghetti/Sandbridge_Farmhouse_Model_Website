@@ -23,10 +23,10 @@ export default function Home() {
   return (
     <>
       <section className="relative h-screen flex items-center justify-center overflow-hidden bg-gradient-to-b from-sand-100 to-sand-50">
-        <div className="absolute inset-0 opacity-40">
+        <div className="absolute inset-0 opacity-50">
           <img
-            src="https://images.pexels.com/photos/1699505/pexels-photo-1699505.jpeg?auto=compress&cs=tinysrgb&w=1600"
-            alt="Farmhouse exterior"
+            src="/DJI_0206-2.jpg"
+            alt="Sandbridge Farmhouse"
             className="w-full h-full object-cover"
           />
         </div>
@@ -126,8 +126,8 @@ export default function Home() {
             </div>
             <div className="aspect-video rounded-lg overflow-hidden shadow-xl">
               <img
-                src="https://images.pexels.com/photos/1701394/pexels-photo-1701394.jpeg?auto=compress&cs=tinysrgb&w=800"
-                alt="Event celebration"
+                src="/DJI_0198 copy.jpg"
+                alt="Aerial view of property"
                 className="w-full h-full object-cover hover:scale-105 transition-transform duration-500"
               />
             </div>
