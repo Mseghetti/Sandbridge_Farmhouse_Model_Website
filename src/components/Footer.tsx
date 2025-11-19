@@ -50,7 +50,7 @@ export default function Footer() {
             <h4 className="font-semibold text-stone-900 mb-4 text-sm">Follow Us</h4>
             <div className="flex gap-4">
               <a
-                href="https://instagram.com"
+                href="https://www.instagram.com/sandbridgefarmhouse?igsh=MWNtZmxsZnozdG83dg=="
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-stone-600 hover:text-sage-500 transition-colors"
