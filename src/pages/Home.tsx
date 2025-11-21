@@ -52,25 +52,64 @@ interface Attraction {
   distance_miles: number;
 }
 
+const defaultProperty: PropertyDetails = {
+  property_name: 'Sandbridge Farmhouse',
+  tagline: 'Your Luxury Coastal Retreat Awaits',
+  description: 'Escape to the stunning Sandbridge Farmhouse, a beautifully renovated luxury vacation rental that perfectly blends rustic charm with modern elegance. This spacious retreat offers breathtaking views, premium amenities, and an unparalleled coastal experience.',
+  bedrooms: 5,
+  bathrooms: 3.5,
+  max_guests: 12,
+  square_footage: 3200,
+  hero_image_url: '/DJI_0196.jpg',
+  nightly_rate: 450,
+  city: 'Virginia Beach',
+  state: 'Virginia'
+};
+
+const defaultAmenities: Amenity[] = [
+  { id: '1', category: 'Outdoor', name: 'Private Pool', icon: 'Waves' },
+  { id: '2', category: 'Outdoor', name: 'Hot Tub', icon: 'Bath' },
+  { id: '3', category: 'Kitchen', name: 'Gourmet Kitchen', icon: 'ChefHat' },
+  { id: '4', category: 'Entertainment', name: 'High-Speed WiFi', icon: 'Wifi' },
+  { id: '5', category: 'Outdoor', name: 'Fire Pit', icon: 'Flame' },
+  { id: '6', category: 'Outdoor', name: 'BBQ Grill', icon: 'Flame' },
+  { id: '7', category: 'Outdoor', name: 'Outdoor Dining', icon: 'UtensilsCrossed' },
+  { id: '8', category: 'Outdoor', name: 'Beach Access', icon: 'Waves' }
+];
+
+const defaultAttractions: Attraction[] = [
+  { name: 'Sandbridge Beach', description: 'Miles of pristine, uncrowded beaches perfect for swimming and surfing', category: 'Beach', distance_miles: 0.3 },
+  { name: 'Back Bay Wildlife Refuge', description: 'Over 9,000 acres of beaches, dunes, and maritime forest', category: 'Nature', distance_miles: 2.5 },
+  { name: 'False Cape State Park', description: 'Pristine barrier island accessible by bike or boat', category: 'Nature', distance_miles: 4.2 },
+  { name: 'Local Seafood Restaurant', description: 'Fresh catches and waterfront dining', category: 'Restaurant', distance_miles: 1.1 }
+];
+
 export default function Home() {
-  const [property, setProperty] = useState<PropertyDetails | null>(null);
-  const [amenities, setAmenities] = useState<Amenity[]>([]);
+  const [property, setProperty] = useState<PropertyDetails>(defaultProperty);
+  const [amenities, setAmenities] = useState<Amenity[]>(defaultAmenities);
   const [testimonials, setTestimonials] = useState<Testimonial[]>([]);
-  const [attractions, setAttractions] = useState<Attraction[]>([]);
+  const [attractions, setAttractions] = useState<Attraction[]>(defaultAttractions);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     async function fetchData() {
-      const [propertyRes, amenitiesRes, testimonialsRes, attractionsRes] = await Promise.all([
-        supabase.from('property_details').select('*').maybeSingle(),
-        supabase.from('amenities').select('*').order('category', { ascending: true }).order('display_order', { ascending: true }),
-        supabase.from('testimonials').select('client_name, quote, rating').eq('featured', true).limit(3),
-        supabase.from('local_attractions').select('*').order('display_order', { ascending: true }).limit(6)
-      ]);
+      try {
+        const [propertyRes, amenitiesRes, testimonialsRes, attractionsRes] = await Promise.all([
+          supabase.from('property_details').select('*').maybeSingle(),
+          supabase.from('amenities').select('*').order('category', { ascending: true }).order('display_order', { ascending: true }),
+          supabase.from('testimonials').select('client_name, quote, rating').eq('featured', true).limit(3),
+          supabase.from('local_attractions').select('*').order('display_order', { ascending: true }).limit(6)
+        ]);
 
-      if (propertyRes.data) setProperty(propertyRes.data);
-      if (amenitiesRes.data) setAmenities(amenitiesRes.data);
-      if (testimonialsRes.data) setTestimonials(testimonialsRes.data);
-      if (attractionsRes.data) setAttractions(attractionsRes.data);
+        if (propertyRes.data) setProperty(propertyRes.data);
+        if (amenitiesRes.data) setAmenities(amenitiesRes.data);
+        if (testimonialsRes.data) setTestimonials(testimonialsRes.data);
+        if (attractionsRes.data) setAttractions(attractionsRes.data);
+      } catch (error) {
+        console.error('Error fetching data:', error);
+      } finally {
+        setLoading(false);
+      }
     }
 
     fetchData();
@@ -83,14 +122,6 @@ export default function Home() {
   const scrollToContent = () => {
     window.scrollTo({ top: window.innerHeight, behavior: 'smooth' });
   };
-
-  if (!property) {
-    return (
-      <div className="min-h-screen flex items-center justify-center">
-        <div className="animate-pulse text-xl text-stone-600">Loading...</div>
-      </div>
-    );
-  }
 
   const featuredAmenities = amenities.slice(0, 8);
   const amenitiesByCategory = amenities.reduce((acc, amenity) => {
