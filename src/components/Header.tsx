@@ -13,40 +13,44 @@ export default function Header() {
     { label: 'Gallery', path: '/gallery' },
     { label: 'About', path: '/about' },
     { label: 'Testimonials', path: '/testimonials' },
-    { label: 'Book Tour', path: '/book' },
+    { label: 'Book Now', path: '/book' },
     { label: 'Contact', path: '/contact' },
   ];
 
   return (
-    <header className="sticky top-0 z-50 bg-white/95 backdrop-blur-md border-b border-sand-200 shadow-sm">
+    <header className="sticky top-0 z-50 bg-white/95 backdrop-blur-md border-b border-stone-200 shadow-sm">
       <nav className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
         <Link to="/" className="flex items-center group">
-          <img
-            src="/logo.png"
-            alt="Sandbridge Farmhouse"
-            className="h-12 w-auto object-contain transition-opacity group-hover:opacity-80"
-          />
+          <span className="font-serif text-2xl font-bold text-stone-900 group-hover:text-amber-700 transition-colors">
+            Sandbridge Farmhouse
+          </span>
         </Link>
 
         <div className="hidden md:flex items-center gap-8">
-          {links.map((link) => (
+          {links.slice(0, -1).map((link) => (
             <Link
               key={link.path}
               to={link.path}
               className={`text-sm font-medium transition-colors ${
                 isActive(link.path)
-                  ? 'text-sage-500'
-                  : 'text-stone-600 hover:text-sage-500'
+                  ? 'text-amber-700'
+                  : 'text-stone-600 hover:text-amber-700'
               }`}
             >
               {link.label}
             </Link>
           ))}
+          <Link
+            to="/book"
+            className="bg-amber-600 hover:bg-amber-700 text-white font-semibold px-6 py-2 rounded-lg transition-all transform hover:scale-105"
+          >
+            Book Now
+          </Link>
         </div>
 
         <button
           onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-          className="md:hidden p-2 text-stone-600 hover:text-sage-500 transition-colors"
+          className="md:hidden p-2 text-stone-600 hover:text-amber-700 transition-colors"
           aria-label="Toggle menu"
         >
           {mobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
@@ -54,7 +58,7 @@ export default function Header() {
       </nav>
 
       {mobileMenuOpen && (
-        <div className="md:hidden border-t border-sand-200 bg-white">
+        <div className="md:hidden border-t border-stone-200 bg-white">
           <div className="px-4 py-4 space-y-3">
             {links.map((link) => (
               <Link
@@ -63,8 +67,8 @@ export default function Header() {
                 onClick={() => setMobileMenuOpen(false)}
                 className={`block py-2 text-sm font-medium transition-colors ${
                   isActive(link.path)
-                    ? 'text-sage-500'
-                    : 'text-stone-600 hover:text-sage-500'
+                    ? 'text-amber-700'
+                    : 'text-stone-600 hover:text-amber-700'
                 }`}
               >
                 {link.label}
